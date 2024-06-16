@@ -36,4 +36,13 @@ public class DishRepository {
         }
         return dishes;
     }
+
+    public Dish findByDishName(String title) {
+        for (Dish dish : list) {
+            if (dish.getName().equals(title)) {
+                return dish;
+            }
+        }
+        return null;
+    }
 }

@@ -15,4 +15,8 @@ public class DishService {
     public ArrayList<Dish> DishesByCategory(String category) {
         return dishRepository.getDishesByCategory(category);
     }
+
+    public Dish findByDishName(String title) {
+        return dishRepository.findByDishName(title);
+    }
 }

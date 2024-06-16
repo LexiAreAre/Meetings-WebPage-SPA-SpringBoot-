@@ -148,4 +148,36 @@ function show_menu_based_on_category(categoryName){
             });
         })
         .catch(error => console.error('Error:', error));
+
+
+    // Function to add an order to the order list
+    document.getElementById('add-button').addEventListener('click', function() {
+        var title = document.getElementById('modal-title').textContent;
+        var size = document.querySelector('input[name="size"]:checked').value;
+        var quantity = document.getElementById('quantity').value;
+
+        fetch('/api/order', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                title: title,
+                size: size,
+                quantity: quantity,
+            }),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Here you can handle the response from the server
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    });
 }
