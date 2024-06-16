@@ -87,6 +87,7 @@ function show_menu_based_on_category(categoryName){
                         <h5 class="card-title
                         ">${dish.name}</h5>
                         <p class="card-text">${dish.description}</p>
+                        <p class="card-text">$ ${dish.price}</p>
                         <a href="#" class="btn btn-primary">Ordenar</a>
                     </div>
                 </div>`
