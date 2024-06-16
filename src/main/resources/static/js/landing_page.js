@@ -7,14 +7,10 @@ function show_landing_page() {
             <!-- Content for section 1 goes here -->
             <h1>Categorías</h1>
             <br>
-            <ul class="vertical-menu">
-                <li><a href="#">Entradas</a></li>
-                <li><a href="#">Carnes</a></li>
-                <li><a href="#">Sopas</a></li>
-                <li><a href="#">Arroces</a></li>
-                <li><a href="#">Bebidas</a></li>
-                <li><a href="#">Postres</a></li>
-            </ul>
+            <div>
+                 <ul class="vertical-menu" id="vertical-menu-categories">
+                 </ul>
+            </div>
         </div>
         <div class="flex-item" id="flex-item-custom">
             <!-- Content for section 2 goes here -->
@@ -46,4 +42,26 @@ function show_landing_page() {
     var rootElement = document.getElementById("page_body");
 
     rootElement.innerHTML = landing_page;
+    show_menu_categories();
+
+}
+
+function show_menu_categories(){
+    var rootElement = document.getElementById("vertical-menu-categories");
+    fetch('/api/categories')
+        .then(response => response.json())
+        .then(categories => {
+            var categoriesList = categories.map(category =>
+                `<li><a href="#">${category.category_name}</a></li>`
+            ).join('');
+
+            menu_categories = `
+            <ul class="vertical-menu">
+                ${categoriesList}
+            </ul>
+            `;
+
+            rootElement.innerHTML = menu_categories;
+        })
+        .catch(error => console.error('Error:', error));
 }
