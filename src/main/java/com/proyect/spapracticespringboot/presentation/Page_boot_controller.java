@@ -11,7 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 @RestController
-@RequestMapping("/Meetings/Home_Page")
+@RequestMapping("/Restaurant")
 public class Page_boot_controller {
 
     private final ResourceLoader resourceLoader;

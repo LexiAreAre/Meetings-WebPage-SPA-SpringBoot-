@@ -1,8 +1,36 @@
-.navbar {
-    background-color: darkgray;
+#navigation_bar {
     color: white;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 100;
+}
+
+.logo {
+    height: 50px; /* adjust as needed */
+    width: 50px; /* adjust as needed */
+}
+
+.restaurant-name {
+    font-size: 2em; /* adjust as needed */
+    color: white; /* adjust as needed */
+}
+
+.bg-light {
+    background-color: lightblue !important; /* Replace #yourColor with the color you want */
+}
+
+.restaurant-title {
+    font-family: 'Your Font', sans-serif; /* Replace 'Your Font' with the font you want */
+    color: darkorange;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    margin-right: 10px; /* adjust as needed */
 }
