@@ -7,7 +7,7 @@
     margin: 0;
     padding: 0;
     background-color: darkgray;
-    color: white;
+    color: black;
 }
 
 .flex-container {
@@ -17,4 +17,13 @@
 .flex-item {
     flex: 1; /* This makes each item take up an equal amount of space */
     padding: 10px; /* Add some padding around each section */
+    margin: 5px;
+}
+
+#flex-item-custom{
+    background-color: #f8f9fa;
+}
+
+.section-subtitle{
+    background-color: darkgray;
 }
