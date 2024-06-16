@@ -16,7 +16,11 @@ public class OrderService {
         return orderRepository.getOrder();
     }
 
-    public void createOrder() {
+    public void createOrder(Order order) {
+        orderRepository.createOrder(order);
+    }
 
+    public String getOrderID() {
+        return orderRepository.getOrderID();
     }
 }

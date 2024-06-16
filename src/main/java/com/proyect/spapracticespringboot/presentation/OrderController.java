@@ -30,6 +30,9 @@ public class OrderController {
         Dish dish = dishService.findByDishName(title);
         boolean sizeBoolean = size.equals("Regular");
         Order order = new Order(dish, quantity, sizeBoolean);
-        return ResponseEntity.ok("Order created");
+
+        orderService.createOrder(order);
+
+        return ResponseEntity.ok("Order created" + orderService.getOrderID());
     }
 }
