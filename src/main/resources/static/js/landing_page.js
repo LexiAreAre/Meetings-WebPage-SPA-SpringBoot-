@@ -19,7 +19,7 @@ function show_landing_page() {
                     <h1 class="section-subtitle">Menú</h1>
                 </div>
             <br>
-                 <div class="section-content">
+                 <div class="section-content" id="dishes_menu">
                     <p>Seleccione una CATEGORÍA en el panel de la izquierda para mostrar sus deliciosos platillos</p>
                     <br>
 <!--                    insert Menu.png-->
@@ -62,6 +62,37 @@ function show_menu_categories(){
             `;
 
             rootElement.innerHTML = menu_categories;
+
+            // Add event listeners to the list items
+            var listItems = rootElement.querySelectorAll('li');
+            listItems.forEach(item => {
+                item.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    show_menu_based_on_category(event.target.textContent);
+                });
+            });
+
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+function show_menu_based_on_category(categoryName){
+    var rootElement = document.getElementById("dishes_menu");
+    fetch(`/api/dishes?category=${categoryName}`)
+        .then(response => response.json())
+        .then(dishes => {
+            var dishesList = dishes.map(dish =>
+                `<div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title
+                        ">${dish.name}</h5>
+                        <p class="card-text">${dish.description}</p>
+                        <a href="#" class="btn btn-primary">Ordenar</a>
+                    </div>
+                </div>`
+            ).join('');
+
+            rootElement.innerHTML = dishesList;
         })
         .catch(error => console.error('Error:', error));
 }
