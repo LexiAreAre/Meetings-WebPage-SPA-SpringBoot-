@@ -26,7 +26,28 @@ function show_landing_page() {
                     <img src="images/Menu.png" alt="Menu" class="menu"> 
                  </div>
             </div>
-            
+<!--            Content of Modal form-->
+               <div id="myModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h2 id="modal-title">Dish Name</h2>
+                        <p id="modal-description">Dish Description</p>
+                    <div>
+                    <input type="radio" id="regular" name="size" value="Regular" checked>
+                    <label for="regular">Regular</label><br>
+                    <input type="radio" id="big" name="size" value="Big">
+                    <label for="big">Grande</label><br>
+                </div>
+                    <div>
+                        <label for="quantity">Quantity (Max 10):</label>
+                        <input type="number" id="quantity" name="quantity" min="1" max="10">
+                    </div>
+                    <br>
+                <div class="btn-group" role="group" aria-label="Modal actions">
+                    <button id="add-button" class="btn btn-primary">Agregar a la orden</button>
+                </div>
+                </div>
+               </div>
         </div>
         <div class="flex-item" id="flex-item-custom">
             <!-- Content for section 3 goes here -->
@@ -84,16 +105,47 @@ function show_menu_based_on_category(categoryName){
             var dishesList = dishes.map(dish =>
                 `<div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title
-                        ">${dish.name}</h5>
+                        <h5 class="card-title">${dish.name}</h5>
                         <p class="card-text">${dish.description}</p>
                         <p class="card-text">$ ${dish.price}</p>
-                        <a href="#" class="btn btn-primary">Ordenar</a>
+                        <a href="#" class="btn btn-primary order-button" data-name="${dish.name}" data-description="${dish.description}">Ordenar</a>
                     </div>
                 </div>`
             ).join('');
 
             rootElement.innerHTML = dishesList;
+
+            // Get the modal
+            var modal = document.getElementById("myModal");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+            // Add event listeners to the "Ordenar" buttons
+            var orderButtons = rootElement.querySelectorAll('.order-button');
+            orderButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    // When the user clicks the button, open the modal
+                    modal.style.display = "block";
+
+                    // Set the title and description of the modal to the name and description of the selected dish
+                    document.getElementById('modal-title').textContent = event.target.getAttribute('data-name');
+                    document.getElementById('modal-description').textContent = event.target.getAttribute('data-description');
+                });
+            });
         })
         .catch(error => console.error('Error:', error));
 }
