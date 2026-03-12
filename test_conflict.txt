@@ -1,2 +1,6 @@
 Testing File
+<<<<<<< HEAD
 HOLA MUNDO, saprissa
+=======
+CHAOPESCAO
+>>>>>>> 6ab07472a5ea64e8d5cc084c758f379e964761f6
